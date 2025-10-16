@@ -1,0 +1,85 @@
+version: 0.1
+# Decred Pulse GUI v1.2 - NodeOps Template
+# Multi-service deployment with dcrd, backend, and frontend
+
+services:
+  dcrd:
+    image: virgilbb/dcrd-akash:latest
+    imagePullPolicy: Always
+    command: []
+    args: []
+    env:
+      - name: DCRD_RPC_USER
+        value: '{{.DCRD_RPC_USER}}'
+        default: decred
+      - name: DCRD_RPC_PASS
+        value: '{{.DCRD_RPC_PASS}}'
+        default: decred123
+      - name: DCRD_NETWORK
+        value: '{{.DCRD_NETWORK}}'
+        default: mainnet
+    resourceUsage:
+      idle:
+        cpu: 200
+        memory: 512
+
+  backend:
+    image: virgilbb/decred-pulse-backend:latest
+    imagePullPolicy: Always
+    command: []
+    args: []
+    env:
+      - name: PORT
+        value: '{{.BACKEND_PORT}}'
+        default: '8080'
+      - name: DCRD_RPC_HOST
+        value: '{{.DCRD_RPC_HOST}}'
+        default: dcrd
+      - name: DCRD_RPC_PORT
+        value: '{{.DCRD_RPC_PORT}}'
+        default: '9109'
+      - name: DCRD_RPC_USER
+        value: '{{.DCRD_RPC_USER}}'
+        default: decred
+      - name: DCRD_RPC_PASS
+        value: '{{.DCRD_RPC_PASS}}'
+        default: decred123
+      - name: DCRD_SKIP_VERIFY
+        value: '{{.DCRD_SKIP_VERIFY}}'
+        default: 'true'
+      - name: DCRD_USE_TLS
+        value: '{{.DCRD_USE_TLS}}'
+        default: 'true'
+      - name: NODE_TLS_REJECT_UNAUTHORIZED
+        value: '{{.NODE_TLS_REJECT_UNAUTHORIZED}}'
+        default: '0'
+      - name: SKIP_WALLET
+        value: '{{.SKIP_WALLET}}'
+        default: 'true'
+      - name: DCRD_RPC_URL
+        value: '{{.DCRD_RPC_URL}}'
+        default: 'https://dcrd:9109'
+      - name: DEBUG
+        value: '{{.DEBUG}}'
+        default: 'true'
+      - name: LOG_LEVEL
+        value: '{{.LOG_LEVEL}}'
+        default: 'debug'
+    resourceUsage:
+      idle:
+        cpu: 100
+        memory: 256
+
+  frontend:
+    image: virgilbb/decred-pulse-frontend:latest
+    imagePullPolicy: Always
+    command: []
+    args: []
+    env:
+      - name: VITE_API_URL
+        value: '{{.VITE_API_URL}}'
+        default: 'http://backend:8080/api'
+    resourceUsage:
+      idle:
+        cpu: 100
+        memory: 128
