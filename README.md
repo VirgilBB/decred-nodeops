@@ -1,107 +1,206 @@
-# 🚀 Decred Pulse GUI Dashboard - NodeOps Template
+# 🌐 Decred NodeOps Templates
 
-Deploy a complete Decred infrastructure with web dashboard on NodeOps and monitor your node with a beautiful GUI interface!
+<div align="center">
+  <img src="assets/decred-dcr-logo.jpg" alt="Decred Logo" width="200" height="200">
+  
+  <h1>Decred NodeOps Templates</h1>
+  <p>Complete Decred infrastructure templates for NodeOps platform</p>
+  
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+  [![NodeOps](https://img.shields.io/badge/NodeOps-Compatible-brightgreen)](https://cloud.nodeops.network/marketplace)
+  [![Decred](https://img.shields.io/badge/Decred-Official-blue)](https://decred.org)
+  [![Docker](https://img.shields.io/badge/Docker-Ready-blue)](https://hub.docker.com/r/virgilbb)
+</div>
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![NodeOps](https://img.shields.io/badge/NodeOps-Compatible-brightgreen)](https://cloud.nodeops.network/marketplace)
-[![Decred](https://img.shields.io/badge/Decred-Mainnet-blue)](https://decred.org)
+## 📖 Overview
 
-## 📖 What is This?
+This repository contains NodeOps-compatible templates for deploying Decred infrastructure:
 
-This is a NodeOps template that deploys a **complete Decred infrastructure** with a modern web dashboard. Includes full dcrd node, backend API, and React frontend for monitoring and management.
+- **Simple Decred Node** - Basic dcrd node for network participation
+- **Decred Pulse Dashboard** - Full monitoring stack with GUI
 
-### ✨ Features
+## 🚀 Available Templates
 
-- 🚀 **One-Click Deployment** - Complete Decred infrastructure in minutes
-- 💰 **Cost-Efficient** - Optimized resources (~$3.50/month)
-- 🔒 **Secure** - Multi-service architecture with proper isolation
-- 📊 **Real-Time Dashboard** - Monitor sync progress, blocks, and network stats
-- 🎯 **Full Node** - Complete dcrd node with RPC access
-- 🔄 **Auto-Recovery** - Automatic restarts on failure
-- 📈 **Block Explorer** - Built-in blockchain explorer
-- 🎫 **Staking Dashboard** - Monitor ticket pool and voting
+### 1. Simple Decred Node
+**Basic dcrd node for network participation**
 
-## 🚀 Quick Start
+- ✅ **Image**: `virgilbb/dcrd:latest`
+- ✅ **Resources**: 2 CPU, 4GB RAM, 120GB storage
+- ✅ **Network**: Testnet (faster sync)
+- ✅ **Cost**: ~$3-5/month
 
-### Step 1: Deploy on NodeOps
+**Perfect for:**
+- Network participation
+- Learning Decred
+- Lightweight deployment
 
-1. Log in to [NodeOps Marketplace](https://cloud.nodeops.network/marketplace)
-2. Search for **"Decred Pulse GUI Dashboard"**
-3. Click **"Deploy"**
-4. (Optional) Customize RPC credentials
-5. Click **"Deploy"**
+### 2. Decred Pulse Dashboard
+**Complete monitoring stack with modern GUI**
 
-### Step 2: Wait for Sync
+- ✅ **Images**: 4-container stack
+  - `virgilbb/decred-pulse-dcrd:latest` - Full node
+  - `virgilbb/decred-pulse-dcrwallet:latest` - Wallet
+  - `virgilbb/decred-pulse-backend:latest` - API
+  - `virgilbb/decred-pulse-frontend:latest` - Dashboard
+- ✅ **Resources**: 2.2 CPU, 4.5GB RAM, 18GB storage
+- ✅ **Network**: Mainnet
+- ✅ **Cost**: ~$5-10/month
 
-- **Initial Setup**: 5-10 minutes for container startup
-- **Blockchain Sync**: 24+ hours for full mainnet sync
-- **GUI Access**: Dashboard available immediately via NodeOps port forwarding
+**Features:**
+- 📊 Real-time node monitoring
+- 💰 Wallet management
+- 🔍 Built-in block explorer
+- 📈 Network statistics
+- 🎫 Staking ticket tracking
 
-### Step 3: Access Your Dashboard
+## 🎯 Quick Start
 
-- **NodeOps Dashboard**: Use port forwarding to access the web interface
-- **Monitor Progress**: Watch real-time sync progress
-- **Explore Blockchain**: Use built-in block explorer
-- **Check Staking**: Monitor ticket pool status
+### Deploy Simple Node
+```yaml
+# Use template: Simple Decred Node
+# Just provide RPC password
+# Deploy on NodeOps marketplace
+```
 
-## 📊 What You're Running
+### Deploy Full Dashboard
+```yaml
+# Use template: Decred Pulse Dashboard
+# Provide RPC and wallet passwords
+# Access dashboard via assigned URL
+```
 
-- **dcrd**: Full Decred node with RPC
-- **Backend**: Node.js API server
-- **Frontend**: React dashboard
-- **Resources**: ~400m CPU, 896MB RAM total
-- **Cost**: ~$3.50/month on NodeOps
+## 📊 Resource Comparison
 
-## 🔧 Configuration Options
+| Template | CPU | RAM | Storage | Network | Cost/Month |
+|----------|-----|-----|---------|---------|------------|
+| **Simple Node** | 2.0 | 4GB | 120GB | Testnet | ~$3-5 |
+| **Pulse Dashboard** | 2.2 | 4.5GB | 18GB | Mainnet | ~$5-10 |
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `DCRD_RPC_USER` | `decred` | RPC username |
-| `DCRD_RPC_PASS` | `decred123` | RPC password |
-| `DCRD_NETWORK` | `mainnet` | Network (mainnet/testnet) |
+## 🔧 Configuration
 
-## 📈 Expected Performance
+### Environment Variables
 
-- **Startup Time**: 5-10 minutes for containers
-- **Sync Time**: 24+ hours for full blockchain
-- **CPU Usage**: ~200-400m actual
-- **Memory Usage**: ~512-896MB RAM
-- **Network**: Variable based on sync progress
+**Simple Node:**
+- `DCRD_RPC_USER` - RPC username (default: decred)
+- `DCRD_RPC_PASS` - RPC password (required)
+- `DCRD_NETWORK` - Network type (testnet/mainnet)
 
-## ❓ Troubleshooting
+**Pulse Dashboard:**
+- `DCRD_RPC_PASS` - Node RPC password
+- `DCRWALLET_RPC_PASS` - Wallet password
+- All other variables have defaults
 
-### Dashboard Not Loading
-- **Check port forwarding**: Ensure NodeOps port forwarding is enabled
-- **Wait for sync**: Dashboard needs partial sync to show data
-- **Check logs**: View container logs in NodeOps dashboard
+## 📚 Documentation
 
-### Slow Sync Progress
-- **Normal for mainnet**: 24+ hours is expected
-- **Check network**: Ensure stable internet connection
-- **Monitor resources**: Verify adequate CPU/memory allocation
+- **[Simple Node Guide](docs/simple-node.md)** - Basic deployment
+- **[Pulse Dashboard Guide](docs/pulse-dashboard.md)** - Full stack deployment
+- **[Troubleshooting](docs/troubleshooting.md)** - Common issues
+- **[Akash Deployment](docs/akash-deployment.md)** - Alternative deployment
 
-### RPC Connection Issues
-- **Verify credentials**: Check RPC username/password
-- **Wait for sync**: RPC needs partial blockchain data
-- **Check firewall**: Ensure RPC port is accessible
+## 🐳 Docker Images
 
-## 🌐 Useful Links
+All images are available on Docker Hub:
 
-- **Decred Website**: [decred.org](https://decred.org)
-- **NodeOps Marketplace**: [cloud.nodeops.network/marketplace](https://cloud.nodeops.network/marketplace)
-- **Tutorial**: See [TUTORIAL.md](TUTORIAL.md) for detailed guide
-- **Support**: Contact via [Telegram](https://t.me/Cerebro_Virgil) or [Twitter](https://x.com/Cerebro_Agent)
+```bash
+# Simple node
+docker pull virgilbb/dcrd:latest
+
+# Pulse dashboard stack
+docker pull virgilbb/decred-pulse-dcrd:latest
+docker pull virgilbb/decred-pulse-dcrwallet:latest
+docker pull virgilbb/decred-pulse-backend:latest
+docker pull virgilbb/decred-pulse-frontend:latest
+```
+
+## 🌐 Deployment Platforms
+
+### NodeOps (Recommended)
+- ✅ One-click deployment
+- ✅ Managed infrastructure
+- ✅ Automatic updates
+- ✅ Built-in monitoring
+
+### Akash Network
+- ✅ Decentralized deployment
+- ✅ Lower costs
+- ✅ Community-driven
+- ✅ Full control
+
+## 📈 What You Get
+
+### Simple Node Benefits
+- 🌐 Support Decred network
+- 🔒 Run your own node
+- 📊 Basic monitoring
+- 💰 Lower resource usage
+
+### Pulse Dashboard Benefits
+- 📊 Beautiful web interface
+- 💰 Wallet management
+- 🔍 Block explorer
+- 📈 Real-time statistics
+- 🎫 Staking support
+- 🔄 Auto-refresh data
+
+## 🛡️ Security
+
+- ✅ Non-root containers
+- ✅ Minimal attack surface
+- ✅ Secure RPC authentication
+- ✅ No private key storage (watch-only)
+- ✅ Regular security updates
+
+## 💡 Use Cases
+
+### For Beginners
+- Start with Simple Node
+- Learn Decred basics
+- Low cost entry point
+
+### For Advanced Users
+- Use Pulse Dashboard
+- Full monitoring capabilities
+- Wallet management
+- Network analysis
+
+### For Developers
+- API access via backend
+- Custom integrations
+- Real-time data feeds
+- Blockchain exploration
+
+## 🔗 Links
+
+- **Decred Official**: [https://decred.org](https://decred.org)
+- **NodeOps Platform**: [https://cloud.nodeops.network/marketplace](https://cloud.nodeops.network/marketplace)
+- **Docker Hub**: [https://hub.docker.com/r/virgilbb](https://hub.docker.com/r/virgilbb)
+- **Akash Network**: [https://akash.network](https://akash.network)
+
+## 🤝 Support
+
+- **GitHub Issues**: [Report bugs or request features](https://github.com/VirgilBB/decred-nodeops/issues)
+- **Telegram**: [https://t.me/Cerebro_Virgil](https://t.me/Cerebro_Virgil)
+- **Twitter**: [https://x.com/Cerebro_Agent](https://x.com/Cerebro_Agent)
+- **Decred Community**: [https://discord.gg/decred](https://discord.gg/decred)
 
 ## 📄 License
 
-This template is provided as-is under the MIT License. See [LICENSE](LICENSE) for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
-- **Decred Team** - For building the hybrid PoW/PoS consensus
+- **Decred Team** - For building amazing blockchain technology
 - **NodeOps** - For providing the deployment platform
-- **Decred Community** - For continuous development and support
+- **Akash Network** - For decentralized infrastructure
+- **Community** - For feedback and contributions
 
 ---
 
-**Ready to run a Decred node?** Deploy now on [NodeOps Marketplace](https://cloud.nodeops.network/marketplace)!
+<div align="center">
+  <p><strong>Ready to deploy Decred infrastructure?</strong></p>
+  <p>
+    <a href="https://cloud.nodeops.network/marketplace">🚀 Deploy on NodeOps</a> |
+    <a href="https://akash.network">🌐 Deploy on Akash</a> |
+    <a href="https://github.com/VirgilBB/decred-nodeops/issues">🐛 Report Issues</a>
+  </p>
+</div>
